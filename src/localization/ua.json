@@ -1,0 +1,65 @@
+{
+  "common": {
+    "save": "Успішно",
+    "error": "Щось пішло не так"
+  },
+  "tabs": {
+    "home": "Головна",
+    "market": "Маркет",
+    "support": "Підтримка",
+    "settings": "Налаштування"
+  },
+  "home": {
+    "greeting": "Вітаємо",
+    "balance": "Баланс",
+    "menuHeader": "Меню",
+    "transactionHistory": "Історія транзакцій "
+  },
+  "settings": {
+    "title": "Налаштування",
+    "header": "Налаштування аккаунту",
+    "profile": "Профіль",
+    "notifications": "Сповіщення",
+    "security": "Безпека",
+    "language": "Мова",
+    "currentLanguage": "Українська (UA)",
+    "changeLanguageTo": "Перемкнути на English"
+  },
+  "profile": {
+    "title": "Персональні дані",
+    "firstName": "Ім'я",
+    "lastName": "Прізвище",
+    "email": "Email",
+    "firstNamePlaceholder": "Введіть ваше ім'я",
+    "lastNamePlaceholder": "Введіть ваше прізвище",
+    "emailPlaceholder": "example@mail.com",
+    "saveChanges": "Зберегти зміни",
+    "successMessage": "Ваші дані успішно оновлено.",
+    "errorMessage": "Виникла помилка під час збереження данних",
+    "saveButton": "Зберегти зміни",
+    "emptyFieldError": " Поля не можуть бути порожні!"
+  },
+  "support": {
+    "header": "Чим можемо допомогти?",
+    "chat": "Чат з Підтримкою",
+    "questions": "Популярні запитання(FAQ)",
+    "call": "Зателефонуй нам"
+  },
+  "market": {
+    "header": "Пропозиції від партнерів",
+    "cashback": "Кешбек та знижки",
+    "insurance": "Страхування",
+    "travel": "Подорожі",
+    "giftCards": "Подарункові картки"
+  },
+  "transactionDetails": {
+    "errorTitle": "Транзакцію не знайдено",
+    "errorMessage": "Можливо, посилання застаріло або ID невірний.",
+    "homeButton": "На Головну",
+    "backButton": "Назад",
+    "sumLabel": "Сума:",
+    "dateLabel": "Дата:",
+    "categoryLabel": "Категорія:",
+    "idLabel": "ID Транзакції:"
+  }
+}

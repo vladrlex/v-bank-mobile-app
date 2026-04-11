@@ -1,0 +1,65 @@
+{
+  "common": {
+    "save": "Save",
+    "error": "Error"
+  },
+  "tabs": {
+    "home": "Home",
+    "market": "Market",
+    "support": "Support",
+    "settings": "Settings"
+  },
+  "home": {
+    "greeting": "Welcome back",
+    "balance": "Balance",
+    "menuHeader": "Menu",
+    "transactionHistory": "Transaction History"
+  },
+  "settings": {
+    "title": "Settings",
+    "header": "Account Settings",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "security": "Security",
+    "language": "Language",
+    "currentLanguage": "English (EN)",
+    "changeLanguageTo": "Switch to Ukrainian"
+  },
+  "profile": {
+    "title": "Personal Data",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastNamePlaceholder": "Enter your last name",
+    "emailPlaceholder": "example@mail.com",
+    "saveChanges": "Save Changes",
+    "successMessage": "Your data has been successfully updated.",
+    "errorMessage": "Something went wrong",
+    "saveButton": "Save Changes",
+    "emptyFieldError": "Fields can`t be empty!"
+  },
+  "support": {
+    "header": "How we can help?",
+    "chat": "Chat with Suppurt",
+    "questions": "Most popular Questions(FAQ)",
+    "call": "Call us"
+  },
+  "market": {
+    "header": "Offers from partners",
+    "cashback": "Cashback and discounts",
+    "insurance": "Insurance",
+    "travel": "Travel",
+    "giftCards": "Gift cards"
+  },
+  "transactionDetails": {
+    "errorTitle": "Transaction not found",
+    "errorMessage": "The link might be expired or the ID is incorrect.",
+    "homeButton": "Go to Home",
+    "backButton": "Back",
+    "sumLabel": "Amount:",
+    "dateLabel": "Date:",
+    "categoryLabel": "Category:",
+    "idLabel": "Transaction ID:"
+  }
+}
