@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -17,6 +17,7 @@ import {
   useUserDispatch,
   updateUserProfile,
 } from "../../../context/UserContext/UserContext";
+import { logout } from "../../../services/authService";
 
 export default function ProfileScreen() {
   const state = useUserState();
@@ -26,7 +27,6 @@ export default function ProfileScreen() {
   const [localFirstName, setLocalFirstName] = useState(state.firstName);
   const [localLastName, setLocalLastName] = useState(state.lastName);
   const [localEmail, setLocalEmail] = useState(state.email);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const onSaveChanges = async () => {
@@ -34,15 +34,12 @@ export default function ProfileScreen() {
       showMessage({ message: t("profile:emptyFieldError"), type: "danger" });
       return;
     }
-
     setIsLoading(true);
-
     await updateUserProfile(dispatch, {
       firstName: localFirstName,
       lastName: localLastName,
       email: localEmail,
     });
-
     setTimeout(() => {
       setIsLoading(false);
       showMessage({
@@ -52,6 +49,14 @@ export default function ProfileScreen() {
         icon: "success",
       });
     }, 500);
+  };
+
+  const onLogout = async () => {
+    try {
+      await logout();
+    } catch (e: any) {
+      showMessage({ message: e.message, type: "danger" });
+    }
   };
 
   return (
@@ -113,6 +118,12 @@ export default function ProfileScreen() {
           ) : (
             <Text style={styles.saveButtonText}>{t("profile:saveButton")}</Text>
           )}
+        </TouchableOpacity>
+
+        {/* Кнопка виходу */}
+        <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
+          <Ionicons name="log-out-outline" size={20} color="#FF3B30" />
+          <Text style={styles.logoutButtonText}>Вийти з акаунту</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -196,6 +207,22 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  logoutButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 16,
+    borderRadius: 10,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: "#FF3B30",
+    gap: 8,
+  },
+  logoutButtonText: {
+    color: "#FF3B30",
     fontSize: 16,
     fontWeight: "600",
   },
