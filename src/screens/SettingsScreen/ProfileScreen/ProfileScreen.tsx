@@ -16,7 +16,7 @@ import {
   useUserState,
   useUserDispatch,
   updateUserProfile,
-} from "../../../context/UserContext";
+} from "../../../context/UserContext/UserContext";
 
 export default function ProfileScreen() {
   const state = useUserState();

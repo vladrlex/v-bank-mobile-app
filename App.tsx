@@ -7,19 +7,20 @@ import { Ionicons } from "@expo/vector-icons";
 import FlashMessage from "react-native-flash-message";
 import { useTranslation } from "react-i18next";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { ActivityIndicator, View } from "react-native";
 import { COMMON_HEADER_STYLES } from "./src/navigation/NavigationStyles";
 import HomeStack from "./src/navigation/HomeStack/HomeStack";
 import SettingsStack from "./src/navigation/SettingsStack/SettingsStack";
 import MarketScreen from "./src/screens/MarketScreen/MarketScreen";
 import SupportScreen from "./src/screens/SupportScreen/SupportScreen";
 import { TabIcons, TabRoutes } from "./src/types/TypeIcons";
-import { UserProvider } from "./src/context/UserContext";
+import { UserProvider } from "./src/context/UserContext/UserContext";
+import { AuthProvider, useAuth } from "./src/context/AuthContext/AuthContext";
 import { linking } from "./src/navigation/Linking/Linking";
+import AuthStack from "./src/navigation/AuthStack/AuthStack";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
 const MarketStackWrapper = () => {
   const { t } = useTranslation("tabs");
   return (
@@ -46,44 +47,58 @@ const SupportStackWrapper = () => {
   );
 };
 
+function RootNavigator() {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="tomato" />
+      </View>
+    );
+  }
+
+  return user ? (
+    <Tab.Navigator
+      id={undefined}
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+        tabBarIcon: ({ focused, color, size }) => {
+          const icons = TabIcons[route.name as TabRoutes];
+          return (
+            <Ionicons
+              name={(focused ? icons.active : icons.inactive) as any}
+              size={size}
+              color={color}
+            />
+          );
+        },
+      })}
+    >
+      <Tab.Screen name={TabRoutes.HOME} component={HomeStack} />
+      <Tab.Screen name={TabRoutes.MARKET} component={MarketStackWrapper} />
+      <Tab.Screen name={TabRoutes.SETTINGS} component={SettingsStack} />
+      <Tab.Screen name={TabRoutes.SUPPORT} component={SupportStackWrapper} />
+    </Tab.Navigator>
+  ) : (
+    <AuthStack />
+  );
+}
+
 export default function App() {
   return (
     <SafeAreaProvider>
-      <UserProvider>
-        <NavigationContainer linking={linking}>
-          <Tab.Navigator
-            id={undefined}
-            screenOptions={({ route }) => ({
-              headerShown: false,
-              tabBarShowLabel: false,
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-              tabBarIcon: ({ focused, color, size }) => {
-                const icons = TabIcons[route.name as TabRoutes];
-                return (
-                  <Ionicons
-                    name={(focused ? icons.active : icons.inactive) as any}
-                    size={size}
-                    color={color}
-                  />
-                );
-              },
-            })}
-          >
-            <Tab.Screen name={TabRoutes.HOME} component={HomeStack} />
-            <Tab.Screen
-              name={TabRoutes.MARKET}
-              component={MarketStackWrapper}
-            />
-            <Tab.Screen name={TabRoutes.SETTINGS} component={SettingsStack} />
-            <Tab.Screen
-              name={TabRoutes.SUPPORT}
-              component={SupportStackWrapper}
-            />
-          </Tab.Navigator>
-          <FlashMessage position="top" />
-        </NavigationContainer>
-      </UserProvider>
+      <AuthProvider>
+        <UserProvider>
+          <NavigationContainer linking={linking}>
+            <RootNavigator />
+            <FlashMessage position="top" />
+          </NavigationContainer>
+        </UserProvider>
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }

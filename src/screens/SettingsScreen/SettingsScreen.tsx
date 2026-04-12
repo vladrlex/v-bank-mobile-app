@@ -6,6 +6,9 @@ import {
   SettingsStackRoutes,
 } from "../../types/SettingsStackRoutes";
 import { Ionicons } from "@expo/vector-icons";
+import { useAuth } from "../../context/AuthContext/AuthContext";
+import { logout } from "../../services/authService";
+import { showMessage } from "react-native-flash-message";
 
 import { useTranslation } from "react-i18next";
 
@@ -68,6 +71,21 @@ export default function SettingsScreen() {
             <Text style={styles.languageText}>{t("currentLanguage")}</Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.logoutButton]}
+          onPress={async () => {
+            try {
+              await logout();
+            } catch (e: any) {
+              showMessage({ message: e.message, type: "danger" });
+            }
+          }}
+        >
+          <View style={[styles.iconWrapper, { backgroundColor: "#FFE5E5" }]}>
+            <Ionicons name="log-out-outline" size={22} color="#FF3B30" />
+          </View>
+          <Text style={[styles.buttonText, { color: "#FF3B30" }]}>Вийти</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -95,6 +113,9 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     flexDirection: "row",
     alignItems: "center",
+  },
+  logoutButton: {
+    marginTop: 8,
   },
   buttonText: {
     fontSize: 16,

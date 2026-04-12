@@ -13,7 +13,7 @@ import {
 } from "../../types/HomeStackRoutes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SettingsStackRoutes } from "../../types/SettingsStackRoutes";
-import { useUserState } from "../../context/UserContext";
+import { useUserState } from "../../context/UserContext/UserContext";
 import { useTranslation } from "react-i18next";
 
 type HomeScreenNavigationProp = CompositeNavigationProp<
