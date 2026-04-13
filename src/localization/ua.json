@@ -37,7 +37,8 @@
     "successMessage": "Ваші дані успішно оновлено.",
     "errorMessage": "Виникла помилка під час збереження данних",
     "saveButton": "Зберегти зміни",
-    "emptyFieldError": " Поля не можуть бути порожні!"
+    "emptyFieldError": " Поля не можуть бути порожні!",
+    "exit": "Вийти з акаунту"
   },
   "support": {
     "header": "Чим можемо допомогти?",
@@ -61,5 +62,32 @@
     "dateLabel": "Дата:",
     "categoryLabel": "Категорія:",
     "idLabel": "ID Транзакції:"
+  },
+  "auth": {
+    "loginTitle": "Вхід",
+    "registerTitle": "Реєстрація",
+    "phoneTitle": "Телефон",
+    "otpTitle": "Підтвердження",
+    "loginSubtitle": "Увійдіть до свого акаунту",
+    "registerSubtitle": "Створіть новий акаунт",
+    "phoneSubtitle": "Введіть номер у форматі +380XXXXXXXXX",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Підтвердіть пароль",
+    "login": "Увійти",
+    "register": "Зареєструватись",
+    "sendSms": "Надіслати SMS",
+    "confirm": "Підтвердити",
+    "phoneLogin": "Увійти через телефон",
+    "noAccount": "Немає акаунту? Зареєструватись",
+    "hasAccount": "Вже є акаунт? Увійти",
+    "backToLogin": "Повернутись до входу",
+    "fillFields": "Заповніть всі поля",
+    "passwordMismatch": "Паролі не збігаються",
+    "passwordTooShort": "Пароль мінімум 6 символів",
+    "invalidPhone": "Введіть коректний номер",
+    "invalidOtp": "Невірний код. Спробуйте ще раз.",
+    "otpCode": "Код надіслано на ваш номер",
+    "chooseLanguage": "Оберіть мову"
   }
 }

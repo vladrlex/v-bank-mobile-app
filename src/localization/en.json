@@ -37,7 +37,8 @@
     "successMessage": "Your data has been successfully updated.",
     "errorMessage": "Something went wrong",
     "saveButton": "Save Changes",
-    "emptyFieldError": "Fields can`t be empty!"
+    "emptyFieldError": "Fields can`t be empty!",
+    "exit": "Log out"
   },
   "support": {
     "header": "How we can help?",
@@ -61,5 +62,32 @@
     "dateLabel": "Date:",
     "categoryLabel": "Category:",
     "idLabel": "Transaction ID:"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "registerTitle": "Register",
+    "phoneTitle": "Phone",
+    "otpTitle": "Confirmation",
+    "loginSubtitle": "Sign in to your account",
+    "registerSubtitle": "Create a new account",
+    "phoneSubtitle": "Enter number in format +380XXXXXXXXX",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "login": "Sign In",
+    "register": "Register",
+    "sendSms": "Send SMS",
+    "confirm": "Confirm",
+    "phoneLogin": "Sign in with phone",
+    "noAccount": "No account? Register",
+    "hasAccount": "Already have an account? Sign In",
+    "backToLogin": "Back to login",
+    "fillFields": "Fill in all fields",
+    "passwordMismatch": "Passwords do not match",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "invalidPhone": "Enter a valid phone number",
+    "invalidOtp": "Invalid code. Please try again.",
+    "otpCode": "Code sent to your number",
+    "chooseLanguage": "Choose language"
   }
 }

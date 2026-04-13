@@ -1,31 +1,25 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
   SettingsStackParamList,
   SettingsStackRoutes,
 } from "../../types/SettingsStackRoutes";
 import { Ionicons } from "@expo/vector-icons";
-
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../../components/LanguageSwitcher/LanguageSwitcher";
 
-type SettingsScreenNavigationProp = NavigationProp<
-  SettingsStackParamList,
-  SettingsStackRoutes.SETTINGS_MAIN
->;
+type SettingsScreenNavigationProp = NavigationProp<SettingsStackParamList>;
 
 export default function SettingsScreen() {
   const navigation = useNavigation<SettingsScreenNavigationProp>();
-  const { t, i18n } = useTranslation("settings");
+  const { t } = useTranslation("settings");
 
-  const handleChangeLanguage = () => {
-    const nextLang = i18n.language === "ua" ? "en" : "ua";
-    i18n.changeLanguage(nextLang);
-  };
   return (
     <View style={styles.safeArea}>
       <View style={styles.container}>
         <Text style={styles.subHeader}>{t("settings:header")}</Text>
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate(SettingsStackRoutes.PROFILE)}
@@ -59,29 +53,24 @@ export default function SettingsScreen() {
           </View>
           <Text style={styles.buttonText}>{t("security")}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleChangeLanguage}>
+
+        <View style={styles.button}>
           <View style={[styles.iconWrapper, { backgroundColor: "#f0e6ff" }]}>
             <Ionicons name="globe-outline" size={22} color="#9C27B0" />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.languageButtonText}>{t("language")}</Text>
-            <Text style={styles.languageText}>{t("currentLanguage")}</Text>
+            <LanguageSwitcher inline />
           </View>
-        </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f5f5f5",
-  },
-  container: {
-    paddingHorizontal: 16,
-    paddingTop: 20,
-  },
+  safeArea: { flex: 1, backgroundColor: "#f5f5f5" },
+  container: { paddingHorizontal: 16, paddingTop: 20 },
   button: {
     backgroundColor: "#ffffff",
     paddingVertical: 12,
@@ -95,9 +84,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     flexDirection: "row",
     alignItems: "center",
-  },
-  logoutButton: {
-    marginTop: 8,
   },
   buttonText: {
     fontSize: 16,
@@ -123,11 +109,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#333333",
     fontWeight: "500",
-  },
-  languageText: {
-    fontSize: 14,
-    color: "#888",
-    fontWeight: "400",
   },
   subHeader: {
     fontSize: 18,
