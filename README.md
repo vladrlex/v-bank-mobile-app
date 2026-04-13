@@ -1,4 +1,4 @@
-# V-Bank Mobile App 📱
+# V-Bank Mobile App 
 
 Мобільний додаток для банкінгу, розроблений на **React Native** з використанням **Expo SDK**. Проєкт демонструє роботу з нативною навігацією, контекстом користувача та багатомовністю.
 
@@ -6,7 +6,7 @@ Mobile banking application built with **React Native** and **Expo**. The project
 
 ---
 
-## 📸 Screenshots / Скріншоти
+##  Screenshots / Скріншоти
 
 <p align="center">
   <img src="./assets/screenshots/HomePage_UA_V-Bank.jpg" width="180" />
@@ -20,7 +20,7 @@ Mobile banking application built with **React Native** and **Expo**. The project
 
 ---
 
-## 🚀 Основні функції / Key Features
+##  Основні функції / Key Features
 
 - **Native Navigation**: Використання `@react-navigation/native-stack` для нативних переходів між екранами.
 - **Localization (i18n)**: Підтримка української та англійської мов через `i18next`.
@@ -42,7 +42,7 @@ Mobile banking application built with **React Native** and **Expo**. The project
 
 ---
 
-## 📂 Структура проєкту / Project Structure
+##  Структура проєкту / Project Structure
 
 - `src/context` — логіка стану користувача та балансу.
 - `src/screens` — екрани додатку (Home, Profile, Transactions, Settings).
@@ -52,7 +52,7 @@ Mobile banking application built with **React Native** and **Expo**. The project
 
 ---
 
-## 📦 Встановлення та запуск / Installation
+##  Встановлення та запуск / Installation
 
 1.  **Клонувати репозиторій / Clone**:
 
@@ -74,6 +74,6 @@ Mobile banking application built with **React Native** and **Expo**. The project
 
 ---
 
-## 🧑‍💻 Автор / Author
+##  Автор / Author
 
 **Vladyslav** - [vladrlex](https://github.com/vladrlex)
