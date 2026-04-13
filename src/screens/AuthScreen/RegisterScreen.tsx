@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { showMessage } from "react-native-flash-message";
+import { Ionicons } from "@expo/vector-icons";
 import { registerWithEmail } from "../../services/authService";
 import { AuthStackParamList } from "../../navigation/AuthStack/AuthStack";
 
@@ -21,6 +22,8 @@ export default function RegisterScreen({ navigation }: Props) {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleRegister = async () => {
     if (!email || !password || !confirm) {
@@ -46,79 +49,160 @@ export default function RegisterScreen({ navigation }: Props) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Реєстрація</Text>
+    <View style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.logoContainer}>
+          <View style={styles.logoWrapper}>
+            <Ionicons name="person-add-outline" size={40} color="#007AFF" />
+          </View>
+          <Text style={styles.appName}>Реєстрація</Text>
+          <Text style={styles.subtitle}>Створіть новий акаунт</Text>
+        </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Пароль"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Підтвердіть пароль"
-        value={confirm}
-        onChangeText={setConfirm}
-        secureTextEntry
-      />
+        <View style={styles.card}>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="example@email.com"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </View>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleRegister}
-        disabled={loading}
-      >
-        {loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text style={styles.buttonText}>Зареєструватись</Text>
-        )}
-      </TouchableOpacity>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Пароль</Text>
+            <View style={styles.passwordWrapper}>
+              <TextInput
+                style={styles.passwordInput}
+                placeholder="••••••••"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                <Ionicons
+                  name={showPassword ? "eye-off-outline" : "eye-outline"}
+                  size={22}
+                  color="#888"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
 
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.link}>Вже є акаунт? Увійти</Text>
-      </TouchableOpacity>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Підтвердіть пароль</Text>
+            <View style={styles.passwordWrapper}>
+              <TextInput
+                style={styles.passwordInput}
+                placeholder="••••••••"
+                value={confirm}
+                onChangeText={setConfirm}
+                secureTextEntry={!showConfirm}
+              />
+              <TouchableOpacity onPress={() => setShowConfirm(!showConfirm)}>
+                <Ionicons
+                  name={showConfirm ? "eye-off-outline" : "eye-outline"}
+                  size={22}
+                  color="#888"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleRegister}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>Зареєструватись</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity
+          style={styles.linkButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Ionicons name="arrow-back-outline" size={18} color="#007AFF" />
+          <Text style={styles.linkText}>Вже є акаунт? Увійти</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  safeArea: { flex: 1, backgroundColor: "#f5f5f5" },
+  container: { flex: 1, paddingHorizontal: 16, justifyContent: "center" },
+  logoContainer: { alignItems: "center", marginBottom: 32 },
+  logoWrapper: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: "#E6F0FF",
     justifyContent: "center",
-    padding: 24,
-    backgroundColor: "#fff",
+    alignItems: "center",
+    marginBottom: 12,
   },
-  title: {
-    fontSize: 28,
-    fontWeight: "700",
-    marginBottom: 32,
-    textAlign: "center",
+  appName: { fontSize: 28, fontWeight: "700", color: "#333", marginBottom: 4 },
+  subtitle: { fontSize: 14, color: "#888" },
+  card: {
+    backgroundColor: "#ffffff",
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 12,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
+  inputGroup: { marginBottom: 16 },
+  label: { fontSize: 14, color: "#888", marginBottom: 6 },
   input: {
-    borderWidth: 1,
-    borderColor: "#ddd",
+    backgroundColor: "#f5f5f5",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     borderRadius: 10,
-    padding: 14,
-    marginBottom: 16,
     fontSize: 16,
+    color: "#333",
   },
+  passwordWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5",
+    paddingHorizontal: 16,
+    borderRadius: 10,
+  },
+  passwordInput: { flex: 1, paddingVertical: 12, fontSize: 16, color: "#333" },
   button: {
     backgroundColor: "tomato",
     borderRadius: 10,
     padding: 16,
     alignItems: "center",
-    marginBottom: 16,
+    marginTop: 4,
   },
   buttonText: { color: "#fff", fontSize: 16, fontWeight: "600" },
-  link: { color: "tomato", textAlign: "center", marginTop: 12, fontSize: 15 },
+  linkButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    paddingVertical: 14,
+    backgroundColor: "#ffffff",
+    borderRadius: 10,
+    marginBottom: 12,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
+  linkText: { color: "#007AFF", fontSize: 15, fontWeight: "500" },
 });
