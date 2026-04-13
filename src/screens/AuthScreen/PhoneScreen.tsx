@@ -11,6 +11,7 @@ import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { showMessage } from "react-native-flash-message";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import { sendOtp } from "../../services/authService";
 import { firebaseConfig } from "../../services/firebaseConfig";
 import { AuthStackParamList } from "../../navigation/AuthStack/AuthStack";
@@ -20,13 +21,14 @@ type Props = {
 };
 
 export default function PhoneScreen({ navigation }: Props) {
+  const { t } = useTranslation("auth");
   const recaptchaVerifier = useRef<FirebaseRecaptchaVerifierModal>(null);
   const [phone, setPhone] = useState("+380");
   const [loading, setLoading] = useState(false);
 
   const handleSendOtp = async () => {
     if (!phone || phone.length < 10) {
-      showMessage({ message: "Введіть коректний номер", type: "warning" });
+      showMessage({ message: t("invalidPhone"), type: "warning" });
       return;
     }
     setLoading(true);
@@ -46,21 +48,18 @@ export default function PhoneScreen({ navigation }: Props) {
         ref={recaptchaVerifier}
         firebaseConfig={firebaseConfig}
       />
-
       <View style={styles.container}>
         <View style={styles.logoContainer}>
           <View style={styles.logoWrapper}>
             <Ionicons name="phone-portrait-outline" size={40} color="#007AFF" />
           </View>
-          <Text style={styles.appName}>Вхід через телефон</Text>
-          <Text style={styles.subtitle}>
-            Введіть номер у форматі +380XXXXXXXXX
-          </Text>
+          <Text style={styles.appName}>{t("phoneLogin")}</Text>
+          <Text style={styles.subtitle}>{t("phoneSubtitle")}</Text>
         </View>
 
         <View style={styles.card}>
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Номер телефону</Text>
+            <Text style={styles.label}>{t("phoneTitle")}</Text>
             <TextInput
               style={styles.input}
               placeholder="+380XXXXXXXXX"
@@ -78,7 +77,7 @@ export default function PhoneScreen({ navigation }: Props) {
             {loading ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={styles.buttonText}>Надіслати SMS</Text>
+              <Text style={styles.buttonText}>{t("sendSms")}</Text>
             )}
           </TouchableOpacity>
         </View>
@@ -88,7 +87,7 @@ export default function PhoneScreen({ navigation }: Props) {
           onPress={() => navigation.goBack()}
         >
           <Ionicons name="arrow-back-outline" size={18} color="#007AFF" />
-          <Text style={styles.linkText}>Повернутись до входу</Text>
+          <Text style={styles.linkText}>{t("backToLogin")}</Text>
         </TouchableOpacity>
       </View>
     </View>

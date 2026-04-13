@@ -10,6 +10,7 @@ import {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { showMessage } from "react-native-flash-message";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import { registerWithEmail } from "../../services/authService";
 import { AuthStackParamList } from "../../navigation/AuthStack/AuthStack";
 
@@ -18,6 +19,7 @@ type Props = {
 };
 
 export default function RegisterScreen({ navigation }: Props) {
+  const { t } = useTranslation("auth");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -27,15 +29,15 @@ export default function RegisterScreen({ navigation }: Props) {
 
   const handleRegister = async () => {
     if (!email || !password || !confirm) {
-      showMessage({ message: "Заповніть всі поля", type: "warning" });
+      showMessage({ message: t("fillFields"), type: "warning" });
       return;
     }
     if (password !== confirm) {
-      showMessage({ message: "Паролі не збігаються", type: "warning" });
+      showMessage({ message: t("passwordMismatch"), type: "warning" });
       return;
     }
     if (password.length < 6) {
-      showMessage({ message: "Пароль мінімум 6 символів", type: "warning" });
+      showMessage({ message: t("passwordTooShort"), type: "warning" });
       return;
     }
     setLoading(true);
@@ -55,13 +57,13 @@ export default function RegisterScreen({ navigation }: Props) {
           <View style={styles.logoWrapper}>
             <Ionicons name="person-add-outline" size={40} color="#007AFF" />
           </View>
-          <Text style={styles.appName}>Реєстрація</Text>
-          <Text style={styles.subtitle}>Створіть новий акаунт</Text>
+          <Text style={styles.appName}>{t("registerTitle")}</Text>
+          <Text style={styles.subtitle}>{t("registerSubtitle")}</Text>
         </View>
 
         <View style={styles.card}>
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}>{t("email")}</Text>
             <TextInput
               style={styles.input}
               placeholder="example@email.com"
@@ -73,7 +75,7 @@ export default function RegisterScreen({ navigation }: Props) {
           </View>
 
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Пароль</Text>
+            <Text style={styles.label}>{t("password")}</Text>
             <View style={styles.passwordWrapper}>
               <TextInput
                 style={styles.passwordInput}
@@ -93,7 +95,7 @@ export default function RegisterScreen({ navigation }: Props) {
           </View>
 
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Підтвердіть пароль</Text>
+            <Text style={styles.label}>{t("confirmPassword")}</Text>
             <View style={styles.passwordWrapper}>
               <TextInput
                 style={styles.passwordInput}
@@ -120,7 +122,7 @@ export default function RegisterScreen({ navigation }: Props) {
             {loading ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={styles.buttonText}>Зареєструватись</Text>
+              <Text style={styles.buttonText}>{t("register")}</Text>
             )}
           </TouchableOpacity>
         </View>
@@ -130,7 +132,7 @@ export default function RegisterScreen({ navigation }: Props) {
           onPress={() => navigation.goBack()}
         >
           <Ionicons name="arrow-back-outline" size={18} color="#007AFF" />
-          <Text style={styles.linkText}>Вже є акаунт? Увійти</Text>
+          <Text style={styles.linkText}>{t("hasAccount")}</Text>
         </TouchableOpacity>
       </View>
     </View>

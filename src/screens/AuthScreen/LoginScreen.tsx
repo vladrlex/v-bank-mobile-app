@@ -10,6 +10,7 @@ import {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { showMessage } from "react-native-flash-message";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import { loginWithEmail } from "../../services/authService";
 import { AuthStackParamList } from "../../navigation/AuthStack/AuthStack";
 
@@ -18,6 +19,7 @@ type Props = {
 };
 
 export default function LoginScreen({ navigation }: Props) {
+  const { t } = useTranslation("auth");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,7 +27,7 @@ export default function LoginScreen({ navigation }: Props) {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      showMessage({ message: "Заповніть всі поля", type: "warning" });
+      showMessage({ message: t("fillFields"), type: "warning" });
       return;
     }
     setLoading(true);
@@ -46,12 +48,12 @@ export default function LoginScreen({ navigation }: Props) {
             <Ionicons name="wallet-outline" size={40} color="#007AFF" />
           </View>
           <Text style={styles.appName}>V-Bank</Text>
-          <Text style={styles.subtitle}>Увійдіть до свого акаунту</Text>
+          <Text style={styles.subtitle}>{t("loginSubtitle")}</Text>
         </View>
 
         <View style={styles.card}>
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}>{t("email")}</Text>
             <TextInput
               style={styles.input}
               placeholder="example@email.com"
@@ -63,7 +65,7 @@ export default function LoginScreen({ navigation }: Props) {
           </View>
 
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Пароль</Text>
+            <Text style={styles.label}>{t("password")}</Text>
             <View style={styles.passwordWrapper}>
               <TextInput
                 style={styles.passwordInput}
@@ -90,7 +92,7 @@ export default function LoginScreen({ navigation }: Props) {
             {loading ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={styles.buttonText}>Увійти</Text>
+              <Text style={styles.buttonText}>{t("login")}</Text>
             )}
           </TouchableOpacity>
         </View>
@@ -100,7 +102,7 @@ export default function LoginScreen({ navigation }: Props) {
           onPress={() => navigation.navigate("Phone")}
         >
           <Ionicons name="phone-portrait-outline" size={18} color="#007AFF" />
-          <Text style={styles.linkText}>Увійти через телефон</Text>
+          <Text style={styles.linkText}>{t("phoneLogin")}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -108,7 +110,7 @@ export default function LoginScreen({ navigation }: Props) {
           onPress={() => navigation.navigate("Register")}
         >
           <Ionicons name="person-add-outline" size={18} color="#007AFF" />
-          <Text style={styles.linkText}>Немає акаунту? Зареєструватись</Text>
+          <Text style={styles.linkText}>{t("noAccount")}</Text>
         </TouchableOpacity>
       </View>
     </View>

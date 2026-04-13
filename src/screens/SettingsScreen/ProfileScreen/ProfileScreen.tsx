@@ -122,7 +122,7 @@ export default function ProfileScreen() {
 
         <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
           <Ionicons name="log-out-outline" size={20} color="#FF3B30" />
-          <Text style={styles.logoutButtonText}>Вийти з акаунту</Text>
+          <Text style={styles.logoutButtonText}>{t("profile:exit")}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

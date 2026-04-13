@@ -1,0 +1,93 @@
+{
+  "common": {
+    "save": "Erfolgreich",
+    "error": "Etwas ist schiefgelaufen"
+  },
+  "tabs": {
+    "home": "Startseite",
+    "market": "Markt",
+    "support": "Support",
+    "settings": "Einstellungen"
+  },
+  "home": {
+    "greeting": "Willkommen zurück",
+    "balance": "Kontostand",
+    "menuHeader": "Menü",
+    "transactionHistory": "Transaktionsverlauf"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "header": "Kontoeinstellungen",
+    "profile": "Profil",
+    "notifications": "Benachrichtigungen",
+    "security": "Sicherheit",
+    "language": "Sprache",
+    "currentLanguage": "Deutsch (DE)",
+    "changeLanguageTo": "Auf Ukrainisch wechseln"
+  },
+  "profile": {
+    "title": "Persönliche Daten",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "firstNamePlaceholder": "Geben Sie Ihren Vornamen ein",
+    "lastNamePlaceholder": "Geben Sie Ihren Nachnamen ein",
+    "emailPlaceholder": "beispiel@mail.com",
+    "saveChanges": "Änderungen speichern",
+    "successMessage": "Ihre Daten wurden erfolgreich aktualisiert.",
+    "errorMessage": "Beim Speichern ist ein Fehler aufgetreten",
+    "saveButton": "Änderungen speichern",
+    "emptyFieldError": "Felder dürfen nicht leer sein!",
+    "exit": "Abmelden"
+  },
+  "support": {
+    "header": "Wie können wir helfen?",
+    "chat": "Chat mit dem Support",
+    "questions": "Häufig gestellte Fragen (FAQ)",
+    "call": "Rufen Sie uns an"
+  },
+  "market": {
+    "header": "Angebote von Partnern",
+    "cashback": "Cashback und Rabatte",
+    "insurance": "Versicherung",
+    "travel": "Reisen",
+    "giftCards": "Geschenkkarten"
+  },
+  "transactionDetails": {
+    "errorTitle": "Transaktion nicht gefunden",
+    "errorMessage": "Der Link ist möglicherweise abgelaufen oder die ID ist falsch.",
+    "homeButton": "Zur Startseite",
+    "backButton": "Zurück",
+    "sumLabel": "Betrag:",
+    "dateLabel": "Datum:",
+    "categoryLabel": "Kategorie:",
+    "idLabel": "Transaktions-ID:"
+  },
+  "auth": {
+    "loginTitle": "Anmelden",
+    "registerTitle": "Registrieren",
+    "phoneTitle": "Telefon",
+    "otpTitle": "Bestätigung",
+    "loginSubtitle": "Melden Sie sich bei Ihrem Konto an",
+    "registerSubtitle": "Erstellen Sie ein neues Konto",
+    "phoneSubtitle": "Nummer im Format +49XXXXXXXXXX eingeben",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "sendSms": "SMS senden",
+    "confirm": "Bestätigen",
+    "phoneLogin": "Mit Telefon anmelden",
+    "noAccount": "Kein Konto? Registrieren",
+    "hasAccount": "Bereits ein Konto? Anmelden",
+    "backToLogin": "Zurück zur Anmeldung",
+    "fillFields": "Bitte alle Felder ausfüllen",
+    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "passwordTooShort": "Passwort muss mindestens 6 Zeichen lang sein",
+    "invalidPhone": "Gültige Telefonnummer eingeben",
+    "invalidOtp": "Ungültiger Code. Bitte erneut versuchen.",
+    "otpCode": "Code wurde an Ihre Nummer gesendet",
+    "chooseLanguage": "Sprache wählen"
+  }
+}
